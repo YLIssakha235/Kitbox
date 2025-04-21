@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Kitbox_app.Views.CreateCabinetView">
+
+  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="15" Margin="20">
+
+    <TextBlock Text="Create Cabinet Page"
+               FontSize="24"
+               FontWeight="Bold"
+               HorizontalAlignment="Center" />
+
+    <!-- Choix de Height -->
+    <TextBlock Text="Height:" FontWeight="Bold" />
+    <ComboBox ItemsSource="{Binding HeightOptions}" 
+              SelectedItem="{Binding SelectedHeight}" Width="150"/>
+
+    <!-- Choix de Width -->
+    <TextBlock Text="Width:" FontWeight="Bold" />
+    <ComboBox ItemsSource="{Binding WidthOptions}" 
+              SelectedItem="{Binding SelectedWidth}" Width="150"/>
+
+    <!-- Choix de Depth -->
+    <TextBlock Text="Depth:" FontWeight="Bold" />
+    <ComboBox ItemsSource="{Binding DepthOptions}" 
+              SelectedItem="{Binding SelectedDepth}" Width="150"/>
+
+    <!-- Liste des lockers -->
+    <TextBlock Text="Lockers added:" FontWeight="Bold" />
+    <ItemsControl ItemsSource="{Binding Lockers}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock Text="{Binding}" />
+            <Button Content="❌"
+                    Command="{Binding DataContext.RemoveLockerCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    CommandParameter="{Binding}" />
+          </StackPanel>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+    <!-- Ajouter -->
+    <Button Content="➕ Add Locker"
+            Background="Green"
+            Foreground="White"
+            Width="200"
+            IsEnabled="{Binding CanAddLocker}"
+            Command="{Binding AddLockerCommand}" />
+
+    <!-- Retour -->
+    <Button Content="⬅ Back"
+            Background="Gray"
+            Foreground="White"
+            Width="200"
+            Command="{Binding GoBackCommand}" />
+  </StackPanel>
+</UserControl>
