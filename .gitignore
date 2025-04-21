@@ -1,1 +1,14 @@
 *.zip
+# Ignore archives
+*.zip
+
+# Ignore build
+bin/
+obj/
+
+# Ignore user files
+*.user
+*.suo
+
+# VSCode
+.vscode/
